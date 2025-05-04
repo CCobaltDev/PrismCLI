@@ -1,2 +1,3 @@
 # PrismCLI
-A Haxe CLI Parser inspired by Python's argparse
+
+A Haxe CLI Parser inspired by [comma](https://github.com/metincetin/comma) and argparse

@@ -1,0 +1,5 @@
+# Only used for code completion
+-cp src
+-D analyzer-optimize
+-main Main
+--interp

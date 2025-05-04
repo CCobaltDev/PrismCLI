@@ -1,0 +1,12 @@
+{
+	"name": "prismcli",
+	"url": "https://github.com/CCobaltDev/PrismCLI/",
+	"license": "MIT",
+	"tags": ["cli", "cross"],
+	"description": "A Haxe CLI Parser inspired by comma and argparse",
+	"version": "1.0.0",
+	"classPath": "src",
+	"releasenote": "Initial Release.",
+	"contributors": ["CCobaltDev"],
+	"main": "Main"
+}
