@@ -7,9 +7,9 @@
 		"cross"
 	],
 	"description": "Haxe CLI Framework inspired by comma and argparse",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"classPath": "src",
-	"releasenote": "Initial Release",
+	"releasenote": "Fix default commands",
 	"contributors": [
 		"CCobaltDev"
 	]

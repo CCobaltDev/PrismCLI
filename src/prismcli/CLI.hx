@@ -49,17 +49,14 @@ class CLI
 		var args = Sys.args();
 		Sys.setCwd(args.pop());
 
-		if (args.length == 0)
+		if (args.length == 0 && defaultCommand == null)
 		{
-			defaultCommand?.exec(this, [], []);
-			if (defaultCommand == null)
-			{
-				print('No default command specified');
-				return;
-			}
+			print('No default command specified');
+			return;
 		}
 
 		var flagSearch:Map<String, Int> = [];
+
 		for (i => flag in flagInfo)
 			for (name in flag.parseNames)
 				flagSearch.set(name, i);
@@ -80,16 +77,13 @@ class CLI
 				arguments.set(curArg.name, parseArgument(curArg, arg, args));
 				__argumentIndex++;
 			}
-
 			__index++;
 		}
-
 		if (flagSearch.exists('--help') && flags.exists('help'))
 		{
 			print(help());
 			return;
 		}
-
 		if (flagSearch.exists('--version') && flags.exists('version'))
 		{
 			print('${name} v${version}');
@@ -99,28 +93,27 @@ class CLI
 		if (commands.length > 0)
 		{
 			var cmds = [for (cmd in commands) cmd.name];
-			var cmdArg = args.shift();
+			var cmdArg = args.shift() ?? defaultCommand?.name;
 
 			if (cmds.contains(cmdArg))
 			{
 				var cmd = commands[cmds.indexOf(cmdArg)];
 
 				var required = 0;
+
 				for (arg in cmd.argInfo)
 					if (!arg.optional)
 						required++;
-
 				var cmdArgs:Map<String, Any> = [];
 				var cmdFlags:Map<String, Any> = [];
 
 				__index = 0;
 				__argumentIndex = 0;
-
 				var flagSearch:Map<String, Int> = [];
+
 				for (i => flag in cmd.flagInfo)
 					for (name in flag.parseNames)
 						flagSearch.set(name, i);
-
 				while (__index < args.length)
 				{
 					var arg = args[__index];
@@ -133,27 +126,21 @@ class CLI
 					else if (__argumentIndex < cmd.argInfo.length)
 					{
 						var curArg = cmd.argInfo[__argumentIndex];
-
 						cmdArgs.set(curArg.name, parseArgument(curArg, arg, args));
 						__argumentIndex++;
 					}
-
 					__index++;
 				}
-
 				if (required > __argumentIndex)
 				{
 					print('Not enough arguments');
 					return;
 				}
-
 				cmd.exec(this, cmdArgs, cmdFlags);
 			}
 		}
-
 		__index = 0;
 		__argumentIndex = 0;
-
 		if (exec != null)
 			exec(this, arguments, flags);
 	}
