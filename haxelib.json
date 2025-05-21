@@ -3,11 +3,13 @@
 	"url": "https://github.com/CCobaltDev/PrismCLI/",
 	"license": "MIT",
 	"tags": [
+		"cross",
 		"cli",
-		"cross"
+		"tools",
+		"utility"
 	],
 	"description": "Haxe CLI Framework inspired by comma and argparse",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"classPath": "src",
 	"releasenote": "Fix default commands",
 	"contributors": [

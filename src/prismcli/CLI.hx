@@ -47,9 +47,9 @@ class CLI
 	public function run(?exec:CommandFunction):Void
 	{
 		var args = Sys.args();
-		Sys.setCwd(args.pop());
+		args.pop();
 
-		if (args.length == 0 && defaultCommand == null)
+		if (args.length == 0 && commands.length > 0 && defaultCommand == null)
 		{
 			print('No default command specified');
 			return;
@@ -79,6 +79,7 @@ class CLI
 			}
 			__index++;
 		}
+
 		if (flagSearch.exists('--help') && flags.exists('help'))
 		{
 			print(help());
@@ -216,8 +217,8 @@ class CLI
 	 */
 	public function addDefaults():Void
 	{
-		addFlag('help', 'Shows this help description', ['--help', '-h'], None);
-		addFlag('version', 'Shows the CLI version', ['--version', '-v'], None);
+		addFlag('help', 'Shows this help description', ['--help', '-h']);
+		addFlag('version', 'Shows the CLI version', ['--version', '-v']);
 	}
 
 	/**
