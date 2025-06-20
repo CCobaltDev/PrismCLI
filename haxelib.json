@@ -11,7 +11,7 @@
 	"description": "Haxe CLI Framework inspired by comma and argparse",
 	"version": "1.2.0",
 	"classPath": "src",
-	"releasenote": "Add the ability to hide commands from help",
+	"releasenote": "Add the ability to hide commands from help, add nargs for Lists",
 	"contributors": [
 		"CCobaltDev"
 	]

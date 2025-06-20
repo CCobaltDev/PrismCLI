@@ -328,15 +328,21 @@ class CLI
 				}
 				map.set(name, value);
 				map;
-			case List:
+			case List(count):
+				var c = count;
 				var list = [];
 				for (i in __index + 1...args.length)
 				{
-					if (args[i].startsWith('-'))
+					if (args[i].startsWith('-') || c <= 0)
 						break;
 
 					list.push(args[i]);
+					c--;
 				}
+
+				if (c > 0)
+					print('Too few items for $arg (expected $count, got ${count - c})');
+
 				list;
 		}
 	}

@@ -47,6 +47,7 @@ enum FlagParseType
 
 	/**
 	 * Parse the flag as an `Array`
+	 * @param count The max amount of items to parse
 	 */
-	List;
+	List(count:Int);
 }
