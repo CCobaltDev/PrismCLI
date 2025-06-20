@@ -10,15 +10,17 @@ class Command
 	var name:String;
 	var description:String;
 	var exec:CommandFunction;
+	var hide_from_help:Bool;
 
 	var argInfo:Array<Argument> = [];
 	var flagInfo:Array<Flag> = [];
 
-	public function new(name:String, description:String, execute:CommandFunction)
+	public function new(name:String, description:String, execute:CommandFunction, hide_from_help:Bool = false)
 	{
 		this.name = name;
 		this.description = description;
 		this.exec = execute;
+		this.hide_from_help = hide_from_help;
 	}
 
 	/**

@@ -160,11 +160,12 @@ class CLI
 	 * @param name The name of the command
 	 * @param description An explanation of the command, shown in the CLI's `help`
 	 * @param execute The function to execute when the command is ran
+	 * @param hide_from_help Whether to hide this command from `help()` or not
 	 * @return The created command, for chaining
 	 */
-	public function addCommand(name:String, description:String, execute:CommandFunction):Command
+	public function addCommand(name:String, description:String, execute:CommandFunction, hide_from_help:Bool = false):Command
 	{
-		var cmd = new Command(name, description, execute);
+		var cmd = new Command(name, description, execute, hide_from_help);
 		commands.push(cmd);
 		return cmd;
 	}
@@ -259,6 +260,9 @@ class CLI
 			str += 'Commands:\n';
 			for (cmd in commands)
 			{
+				if (cmd.hide_from_help)
+					continue;
+
 				str += cmd.name.rpad(' ', 30) + cmd.description + '\n';
 
 				if (cmd.argInfo.length > 0)
